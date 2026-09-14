@@ -3,8 +3,11 @@ description: |
   Checks NDJSON exports with no wall-clock timeout. Resource limits return decline.
 url: "https://github.com/kim-em/lean4cobol.git"
 ref: "main"
-rev: f5e58fbd6937c86102571666c3387dcf5328ee8f
+rev: d2e7b79c014ec3fa9aa8fb42f2b34d0ca479e3c8
 build: nix develop path:. --ignore-environment -c make bin/lean4cobol
 run: |
   ulimit -s unlimited
   exec ./bin/lean4cobol "$IN"
+# Mathlib is supported, but excluded from routine arena runs for cost.
+declines:
+  - mathlib
