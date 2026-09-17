@@ -4,6 +4,8 @@ description: |
 
   Proof irrelevance makes .tt = .ff, but `pick` distinguishes between them.
 
-leanfile: tests/large-elim-prop-bool.lean
+  Kiota accepted this until it was [fixed](https://github.com/sankalpsthakur/kiota/pull/8).
+
+leanfile: tests/bugs/large-elim-prop-bool.lean
 export-decls: ["boom"]
 outcome: reject

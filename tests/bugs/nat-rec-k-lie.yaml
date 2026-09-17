@@ -5,5 +5,9 @@ description: |
   but nat literals bypasses K-like reduction, so two reduction rules disagree.
 
   `∀ n, g n` holds by the first, and `g 1` is `False` by the second.
-file: tests/nat-rec-k-lie.ndjson
+
+  A variant of `bugs/rec-k-lie`, which nanoda and its descendants accepted until it
+  was [fixed](https://github.com/ammkrn/nanoda_lib/pull/22); at that time, nanoda
+  itself rejected this variant, as it had no literal path for `Nat.rec`.
+file: tests/bugs/nat-rec-k-lie.ndjson
 outcome: reject
