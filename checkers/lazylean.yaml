@@ -16,20 +16,27 @@ description: |
     definition, and structurally recursive definitions get Coq-style fixpoint
     rules that the kernel verifies with `is_def_eq` before using them.
   - `Lean.reduceBool`/`reduceNat` (native reduction) are declined.
+  - Declarations are checked by worker processes forked after the export has
+    been parsed, so the parse and the interned terms are shared rather than
+    repeated; the export's declaration order is verified first, so that no
+    worker can be shown a constant introduced after the one it is checking.
 
   Written by Claude (Anthropic), directed by Chris Emery.
-version: "0.1.0"
+version: "0.2.0"
 url: https://github.com/corun1024/lazylean
-ref: v0.1.0
-rev: 6fcbf1da62bd480c4047499d1de4e4bfa95c83ed
+ref: v0.2.0
+rev: 2fe4a02b71d0c079b03f847503caba0ba6f2756c
 build: |
   cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
   cmake --build build -j
+threads: 8
 # Exit codes are the arena's: 0 accept, 1 reject, 2 declined.  --max-rss makes a
 # declaration that outgrows the runner's memory a decline rather than a kill, and
-# the timeout is reported as a decline too.
+# the timeout is reported as a decline too.  -j 8 checks eight declarations at a
+# time, each in its own process, over one parse of the export; reduction inside a
+# declaration stays sequential, so it is only the large corpora that gain.
 run: |
-  timeout 3600 build/lazylean --max-rss 14000 "$IN"
+  timeout 3600 build/lazylean -j 8 --max-rss 14000 "$IN"
   rc=$?
   case $rc in
     124) exit 2 ;;
