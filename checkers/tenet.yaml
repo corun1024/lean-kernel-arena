@@ -15,8 +15,8 @@ description: |
   on the prelude of the kind the arena's README permits.
 url: https://github.com/keithadler/tenet
 ref: main
-rev: 1319aba70cf7dc7cbc9ae3afd06477bb2434ede0
-version: "0.10.0"
+rev: ef0f2e304c3265ee7398e15233e5e8cd94382d03
+version: "0.11.1"
 
 # Tenet checks declarations on several threads, so it has to say how many or the runner will
 # oversubscribe the machine and spoil everyone else's timings. Four, not twelve: measured on all of
