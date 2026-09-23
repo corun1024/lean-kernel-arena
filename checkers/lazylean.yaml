@@ -22,10 +22,10 @@ description: |
     worker can be shown a constant introduced after the one it is checking.
 
   Written by Claude (Anthropic), directed by Chris Emery.
-version: "0.2.0"
+version: "0.3.0"
 url: https://github.com/corun1024/lazylean
-ref: v0.2.0
-rev: 2fe4a02b71d0c079b03f847503caba0ba6f2756c
+ref: v0.3.0
+rev: 68c66fa18c1afe029512b90ecfe0b162c0dcd8fb
 build: |
   cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
   cmake --build build -j
